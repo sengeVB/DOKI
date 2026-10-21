@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOKI III启动器 | Minecraft液态玻璃MC启动工具</title>
+<meta name="description" content="DOKI III是Minecraft我的世界启动器，液态玻璃UI界面，支持模组、整合包、正版离线账号切换，Windows解压即用。">
+<meta name="keywords" content="DOKI III,DOKI启动器,DOKI,我的世界启动器,Minecraft启动器,MC启动器,整合包,模组,液态玻璃启动器">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://doki.totalh.net/">
+<meta name="theme-color" content="#05060b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DOKI III">
+<meta property="og:title" content="DOKI III启动器 | Minecraft液态玻璃MC启动工具">
+<meta property="og:description" content="DOKI III是Minecraft我的世界启动器，液态玻璃UI界面，支持模组、整合包、正版离线账号切换，Windows解压即用。">
+<meta property="og:url" content="https://doki.totalh.net/">
+<meta property="og:image" content="https://doki.totalh.net/assets/icon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOKI III启动器 | Minecraft液态玻璃MC启动工具">
+<meta name="twitter:description" content="DOKI III是Minecraft我的世界启动器，液态玻璃UI界面，支持模组、整合包、正版离线账号切换，Windows解压即用。">
+<meta name="twitter:image" content="https://doki.totalh.net/assets/icon.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<meta name="author" content="DOKI 团队">
+<meta property="article:published_time" content="2026-10-21">
+<meta property="article:modified_time" content="2026-10-21">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "DOKI III",
+      "alternateName": ["DOKI 启动器", "Dynamic Ore Kit Init 3"],
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "description": "DOKI III 是 Minecraft 我的世界启动器，采用液态玻璃 UI 界面，支持模组、整合包、正版与离线账号切换，Windows 解压即用。",
+      "url": "https://doki.totalh.net/",
+      "downloadUrl": "http://doki.totalh.net/DOKI3.zip",
+      "image": "https://doki.totalh.net/assets/icon.png",
+      "softwareVersion": "26.3",
+      "datePublished": "2026-10-21",
+      "dateModified": "2026-10-21",
+      "inLanguage": "zh-CN",
+      "author": { "@type": "Organization", "name": "DOKI 团队" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "DOKI III 是什么？",
+          "acceptedAnswer": { "@type": "Answer", "text": "DOKI III（Dynamic Ore Kit Init 3）是一款面向 Windows 的 Minecraft 我的世界启动器，界面采用 iOS 26 风格的液态玻璃设计，支持原版游戏、模组与整合包下载，以及正版与离线账号切换。" }
+        },
+        {
+          "@type": "Question",
+          "name": "DOKI III 支持哪些系统？",
+          "acceptedAnswer": { "@type": "Answer", "text": "目前支持 Windows 10 与 Windows 11，下载 ZIP 压缩包后解压到任意目录即可直接运行，无需安装步骤。" }
+        },
+        {
+          "@type": "Question",
+          "name": "DOKI III 需要付费吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "DOKI III 本身完全免费，可自由下载使用，不包含任何付费解锁项。" }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么下载功能无法使用？",
+          "acceptedAnswer": { "@type": "Answer", "text": "DOKI III 暂不提供中国大陆地区的下载功能。在中国大陆以外地区，可在设置中阅读并同意相关协议后，手动开启强制下载功能。" }
+        },
+        {
+          "@type": "Question",
+          "name": "DOKI III 可以更换主题配色吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。设置中的 UI 个性化提供冰川蓝、紫罗兰、翡翠森林、落日暖橙、玫瑰晨曦、深海午夜、薄荷汽水、钛金灰八套配色，并支持调节背景透明度与浓度。" }
+        },
+        {
+          "@type": "Question",
+          "name": "当前版本是否稳定？",
+          "acceptedAnswer": { "@type": "Answer", "text": "当前发布的是开发预览版本，功能仍在完善中，仅供测试体验，不建议用于正式的游戏存档环境。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+/* ============ DOKI III · iOS26 液态玻璃 丝滑增强版 ============ */
+
+/* 注册颜色变量为可动画属性 —— 换配色时整页颜色流动过渡 */
+@property --accent   { syntax: "<color>"; inherits: true; initial-value: #0a84ff; }
+@property --accent-2 { syntax: "<color>"; inherits: true; initial-value: #bf5af2; }
+
+:root {
+  --bg: #05060b;
+  --ink: #f5f5f7;
+  --muted: rgba(235, 235, 245, .62);
+  --muted-2: rgba(235, 235, 245, .40);
+  --rule: rgba(255, 255, 255, .10);
+  --rule-strong: rgba(255, 255, 255, .18);
+  --glass: rgba(20, 21, 28, .52);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --spring: cubic-bezier(.34, 1.42, .64, 1);   /* iOS26弹簧曲线 */
+  --spring-slow: cubic-bezier(.26, 1.28, .44, 1.04);
+  --radius: 26px;
+  --maxw: 1080px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  transition: --accent .8s var(--ease), --accent-2 .8s var(--ease);
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: color-mix(in srgb, var(--accent) 42%, transparent); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+section[id] { scroll-margin-top: 96px; }
+
+/* ============ 自定义光标（双环物理跟随） ============ */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity .3s var(--ease), width .3s var(--spring), height .3s var(--spring),
+    border-color .3s var(--ease), background-color .3s var(--ease);
+  will-change: transform;
+}
+html.cursor-on .cursor-dot, html.cursor-on .cursor-ring { opacity: 1; }
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 80%, transparent),
+              0 0 22px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1.5px solid rgba(255, 255, 255, .38);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+/* 悬停可交互元素：外环放大吸附 */
+html.cursor-hover .cursor-ring {
+  width: 52px; height: 52px;
+  border-color: color-mix(in srgb, var(--accent) 75%, transparent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+/* 按下：内点弹大、外环收缩 */
+html.cursor-press .cursor-dot { width: 10px; height: 10px; }
+html.cursor-press .cursor-ring { width: 26px; height: 26px; border-color: rgba(255,255,255,.6); }
+/* 文本输入类场景不在此页，无需 text 态 */
+
+/* ============ 环境光（视差包裹层 + 漂移动画分离） ============ */
+.glow-wrap { position: fixed; inset: 0; z-index: -1; pointer-events: none; will-change: transform; }
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.glow-1 {
+  top: -22vmax; left: -14vmax; width: 64vmax; height: 64vmax;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%);
+  animation: drift1 26s var(--ease) infinite alternate;
+}
+.glow-2 {
+  top: -18vmax; right: -18vmax; width: 60vmax; height: 60vmax;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 26%, transparent), transparent 70%);
+  animation: drift2 32s var(--ease) infinite alternate;
+}
+@keyframes drift1 { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(8vmax,6vmax,0) scale(1.15); } }
+@keyframes drift2 { from { transform: translate3d(0,0,0) scale(1.05); } to { transform: translate3d(-7vmax,8vmax,0) scale(.94); } }
+
+/* ============ 顶栏 ============ */
+.nav {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 8px 7px 13px;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--rule);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  transform: translateX(-50%);
+  transition: background .45s var(--spring), border-color .45s var(--spring), transform .45s var(--spring);
+  will-change: transform, background, border-color;
+}
+.nav.is-scrolled {
+  background: rgba(10, 11, 16, .74);
+  border-color: var(--rule-strong);
+  transform: translateX(-50%) scale(0.98);
+}
+.nav-brand { display: flex; align-items: center; gap: 8px; padding-right: 10px; font-size: 15px; font-weight: 650; white-space: nowrap; }
+.nav-brand img { width: 26px; height: 26px; border-radius: 8px; }
+.nav-links { position: relative; display: flex; gap: 2px; padding-right: 6px; }
+/* 导航滑块指示器 —— 像liquid glass一样在链接下滑动 */
+.nav-ind {
+  position: absolute; top: 0; left: 0; height: 100%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .10);
+  border: 1px solid rgba(255, 255, 255, .14);
+  opacity: 0;
+  transition: transform .55s var(--spring), width .55s var(--spring), opacity .35s var(--ease);
+  will-change: transform, width; pointer-events: none;
+}
+.nav-links a {
+  position: relative; z-index: 1;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color .35s var(--spring), transform .45s var(--spring);
+  will-change: transform, color;
+}
+.nav-links a:hover { color: var(--ink); transform: scale(1.06); }
+.nav-links a.active { color: var(--ink); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 7px; padding: 9px 17px;
+  border-radius: 999px; font-size: 14px; font-weight: 600; color: #fff;
+  background: var(--accent);
+  transition: transform .45s var(--spring), background-color .5s var(--spring);
+  will-change: transform;
+}
+.nav-cta:active { transform: translateY(0) scale(0.97); }
+.nav-cta svg { width: 14px; height: 14px; }
+
+/* ============ 布局 & 按钮 ============ */
+.wrap { width: min(100% - 40px, var(--maxw)); margin-inline: auto; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 30px; border-radius: 999px; font-size: 16px; font-weight: 600;
+  white-space: nowrap; will-change: transform;
+  transition: transform .5s var(--spring), background-color .5s var(--spring), border-color .5s var(--spring);
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn-primary { color: #fff; background: var(--accent); border: 1px solid rgba(255,255,255,.18); }
+.btn-primary:active { transform: translateY(-1px) scale(.97); }
+
+.btn-ghost { color: var(--ink); background: rgba(255,255,255,.06); border: 1px solid var(--rule-strong); backdrop-filter: blur(16px); }
+.btn-ghost:hover { transform: translateY(-3px); background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.3); }
+.btn-ghost:active { transform: translateY(-1px) scale(.97); }
+
+/* ============ Hero ============ */
+.hero { text-align: center; padding: clamp(130px, 16vh, 180px) 0 0; overflow: hidden; }
+.rise { animation: rise .95s var(--spring-slow) both; }
+.d1 { animation-delay: .08s; } .d2 { animation-delay: .18s; } .d3 { animation-delay: .28s; }
+.d4 { animation-delay: .38s; } .d5 { animation-delay: .48s; } .d6 { animation-delay: .58s; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px;
+  border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--rule);
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  backdrop-filter: blur(10px);
+  transition: transform .4s var(--spring);
+}
+.badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+.hero h1 {
+  margin: 26px 0 0; font-size: clamp(62px, 12vw, 150px); line-height: .92;
+  letter-spacing: -.05em; font-weight: 750;
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,.5));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero h1 em { font-style: normal; color: var(--accent); background: none; -webkit-text-fill-color: var(--accent); }
+.hero-sub { margin: 16px 0 0; font-size: 13px; letter-spacing: .34em; text-transform: uppercase; color: var(--muted-2); }
+.hero-lead { max-width: 620px; margin: 24px auto 0; font-size: clamp(16px, 1.6vw, 20px); line-height: 1.75; color: var(--muted); text-wrap: balance; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+.hero-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; margin-top: 24px; font-size: 13px; color: var(--muted-2); }
+
+/* 主视觉：3D 微倾斜 */
+.hero-shot-wrap { perspective: 1200px; }
+.hero-shot {
+  position: relative; width: min(100% - 40px, 820px); margin: 52px auto 0;
+  border-radius: clamp(14px, 2vw, 22px); padding: 1px;
+  background: linear-gradient(160deg, rgba(255,255,255,.25), rgba(255,255,255,.05) 40%, rgba(255,255,255,.14));
+  box-shadow: 0 46px 100px -40px rgba(0,0,0,.9);
+  will-change: transform;
+  transition: transform .6s var(--spring);
+  transform-style: preserve-3d;
+}
+.hero-shot img { width: 100%; height: auto; border-radius: clamp(13px, 1.9vw, 21px); }
+
+/* ============ 章节标题 ============ */
+.head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+.head h2 { margin: 0 0 16px; font-size: clamp(30px, 4vw, 50px); line-height: 1.08; letter-spacing: -.03em; font-weight: 700; text-wrap: balance; }
+.head p { margin: 0; font-size: clamp(15px, 1.35vw, 18px); color: var(--muted); }
+.label { color: var(--accent); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 18px; }
+
+/* 滚动入场 */
+.rv { opacity: 0; transform: translateY(30px) scale(0.985); transition: opacity .8s var(--spring-slow), transform .85s var(--spring-slow); will-change: opacity, transform; }
+.rv.in { opacity: 1; transform: none; }
+
+/* ============ 展示区（方向感知滑动切换） ============ */
+.showcase { padding: clamp(70px, 10vw, 130px) 0; }
+.seg {
+  position: relative; display: inline-flex; padding: 5px; margin-bottom: 30px;
+  border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid var(--rule);
+  backdrop-filter: blur(14px);
+}
+.seg-ind {
+  position: absolute; top: 5px; left: 0; height: calc(100% - 10px); border-radius: 999px;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.22);
+  transition: transform .6s var(--spring), width .6s var(--spring);
+  will-change: transform, width; pointer-events: none;
+}
+.seg-btn { position: relative; z-index: 1; padding: 9px 22px; border-radius: 999px; font-size: 14px; font-weight: 550; color: var(--muted); transition: color .4s var(--spring), transform .4s var(--spring); white-space: nowrap; }
+.seg-btn:hover { color: rgba(255,255,255,.9); transform: scale(1.04); }
+.seg-btn:active { transform: scale(0.96); }
+.seg-btn.on { color: #fff; transform: scale(1.03); }
+.seg-center { text-align: center; }
+.stage {
+  position: relative; aspect-ratio: 1587 / 896; overflow: hidden;
+  border-radius: clamp(16px, 2.4vw, 28px); background: #07080d;
+  box-shadow: 0 40px 90px -45px rgba(0,0,0,.95), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.slide {
+  position: absolute; inset: 0; opacity: 0; transform: scale(1.06);
+  transition: opacity .6s var(--ease), transform .85s var(--spring-slow);
+  will-change: opacity, transform; pointer-events: none;
+}
+.slide.on { opacity: 1; transform: none !important; pointer-events: auto; }
+/* 方向感知入场：新截图从行进方向滑入（不得覆盖 on 的终态） */
+.slide.from-right:not(.on) { transform: scale(1.06) translateX(96px); }
+.slide.from-left:not(.on)  { transform: scale(1.06) translateX(-96px); }
+/* 旧截图向反方向带轻微缩小淡出 */
+.slide.exit-left  { opacity: 0; transform: scale(.965) translateX(-96px); }
+.slide.exit-right { opacity: 0; transform: scale(.965) translateX(96px); }
+.slide img { width: 100%; height: 100%; object-fit: contain; }
+.caption {
+  text-align: center; margin-top: 26px; min-height: 26px; font-size: 14.5px; color: var(--muted);
+  transition: opacity .32s var(--ease), transform .32s var(--ease);
+}
+.caption.swap { opacity: 0; transform: translateY(10px); }
+
+/* ============ 配色区 ============ */
+.theme { padding: 0 0 clamp(80px, 11vw, 130px); }
+.swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 760px; margin: 0 auto; }
+.swatch {
+  display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 14px 10px 12px;
+  border-radius: 18px; border: 1px solid transparent; background: rgba(255,255,255,.03);
+  transition: transform .48s var(--spring), background-color .4s var(--spring), border-color .4s var(--spring);
+  will-change: transform; flex: 0 0 auto; min-width: 82px;
+}
+.swatch:hover { transform: translateY(-5px) scale(1.04); }
+.swatch:active { transform: translateY(-2px) scale(0.96); }
+.swatch-dot {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  transition: transform .48s var(--spring);
+}
+.swatch-name { font-size: 12px; color: var(--muted); }
+.swatch.on { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); }
+.swatch.on .swatch-dot { transform: scale(1.18); box-shadow: 0 0 0 3px rgba(5,6,11,.9), 0 0 0 5px var(--c1); }
+.swatch.on .swatch-name { color: #fff; }
+
+/* ============ 特性卡 ============ */
+.features { padding: 0 0 clamp(70px, 10vw, 120px); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+/* 卡片瀑布式入场 */
+.feature-grid .rv:nth-child(2) { transition-delay: .07s; }
+.feature-grid .rv:nth-child(3) { transition-delay: .14s; }
+.feature-grid .rv:nth-child(5) { transition-delay: .07s; }
+.feature-grid .rv:nth-child(6) { transition-delay: .14s; }
+.feature {
+  padding: 26px 24px; border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .52s var(--spring), border-color .4s var(--spring);
+  will-change: transform;
+}
+.feature:hover { transform: translateY(-7px) scale(1.01); border-color: rgba(255,255,255,.18); }
+.feature h3 { margin: 0 0 8px; font-size: 17px; font-weight: 620; }
+.feature p { margin: 0; font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+
+/* ============ 问答区 ============ */
+.faq { padding: 0 0 clamp(70px, 10vw, 120px); }
+.faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  border-radius: 20px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.08);
+  overflow: hidden; transition: border-color .4s var(--ease), background-color .4s var(--ease);
+}
+.faq-item:hover { border-color: rgba(255,255,255,.16); }
+.faq-item[open] { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+.faq-q {
+  list-style: none; cursor: pointer; padding: 18px 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-size: 15px; font-weight: 600; transition: color .3s var(--ease);
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q svg { flex: none; width: 16px; height: 16px; color: var(--muted-2); transition: transform .45s var(--spring), color .3s var(--ease); }
+.faq-item[open] .faq-q svg { transform: rotate(180deg); color: var(--accent); }
+.faq-a { padding: 0 22px 20px; font-size: 14px; line-height: 1.75; color: var(--muted); }
+.faq-item[open] .faq-a { animation: faqIn .45s var(--spring-slow) both; }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* ============ 关于 ============ */
+.about { padding: 0 0 clamp(70px, 10vw, 120px); }
+.about-box {
+  max-width: 820px; margin: 0 auto; padding: clamp(24px, 3.5vw, 38px);
+  border-radius: var(--radius); background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+}
+.about-box p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.85; color: var(--muted); }
+.about-box p:last-child { margin-bottom: 0; }
+.about-box strong { color: var(--ink); font-weight: 600; }
+
+/* ============ 下载区 ============ */
+.download { padding: 0 0 clamp(70px, 10vw, 110px); }
+.download-card {
+  display: flex; flex-wrap: wrap; align-items: center; gap: clamp(24px, 4vw, 44px);
+  padding: clamp(28px, 4vw, 48px); border-radius: var(--radius);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 16%, transparent), rgba(255,255,255,.03));
+  border: 1px solid var(--rule-strong);
+  transition: transform .5s var(--spring), background .8s var(--ease);
+}
+.download-card:hover { transform: translateY(-4px); }
+.dl-icon { flex: none; width: 82px; height: 82px; border-radius: 22px; display: grid; place-items: center; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+.dl-icon img { width: 70%; height: 70%; object-fit: contain; }
+.dl-body { flex: 1 1 280px; min-width: 0; }
+.dl-body h2 { margin: 0; font-size: clamp(24px, 3vw, 36px); letter-spacing: -.03em; font-weight: 700; }
+.dl-body p { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+.dl-action { flex: none; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.dl-action small { font-size: 12px; color: var(--muted-2); }
+
+/* ============ 页脚 ============ */
+.footer { padding: 48px 0 40px; border-top: 1px solid var(--rule); text-align: center; }
+.footer-brand { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 620; }
+.footer-brand img { width: 24px; height: 24px; border-radius: 7px; }
+.footer p { margin: 12px 0 0; font-size: 13px; color: var(--muted-2); }
+.footer .copy { margin-top: 18px; font-size: 12px; color: rgba(235,235,245,.28); }
+
+/* ============ 响应式 ============ */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .download-card { flex-direction: column; align-items: flex-start; }
+  .dl-action { width: 100%; align-items: stretch; }
+  .dl-action .btn { width: 100%; }
+  .dl-action small { text-align: center; }
+}
+@media (max-width: 560px) {
+  .wrap { width: calc(100% - 32px); }
+  .feature-grid { grid-template-columns: 1fr; }
+  .hero-shot { width: calc(100% - 24px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .rv, .rise { opacity: 1 !important; transform: none !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-wrap" aria-hidden="true">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+</div>
+<!-- 自定义光标 -->
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<!-- 顶栏（常驻） -->
+<header class="nav" id="nav">
+  <a class="nav-brand" href="#top"><img src="assets/icon.png" alt="">DOKI III</a>
+  <nav class="nav-links">
+    <span class="nav-ind" id="navInd" aria-hidden="true"></span>
+    <a href="#features" data-nav>功能</a>
+    <a href="#showcase" data-nav>界面</a>
+    <a href="#theme" data-nav>配色</a>
+    <a href="#faq" data-nav>问答</a>
+    <a href="#download" data-nav>下载</a>
+  </nav>
+  <a class="nav-cta" href="http://doki.totalh.net/DOKI3.zip" data-magnetic>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></svg>
+    下载
+  </a>
+</header>
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge rise d1"><i></i>开发预览版 · 半成品</div>
+      <h1 class="rise d2">DOKI <em>III</em></h1>
+      <p class="hero-sub rise d3">Dynamic Ore Kit Init 3</p>
+      <p class="hero-lead rise d4">把 Minecraft 装进一块玻璃里。<br>液态玻璃界面，丝滑动效，从第一眼到每一次启动。</p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-primary" href="http://doki.totalh.net/DOKI3.zip" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></svg>
+          下载 DOKI III
+        </a>
+        <a class="btn btn-ghost" href="#showcase">查看界面</a>
+      </div>
+      <div class="hero-meta rise d6">
+        <span>Windows 10 / 11</span><span>解压即用</span><span>开发预览版本</span>
+      </div>
+    </div>
+    <div class="hero-shot-wrap rise d6">
+      <div class="hero-shot" id="heroShot">
+        <img src="assets/screen-launch.png" width="1587" height="896" alt="DOKI III 启动页界面预览" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+  <!-- 特性 -->
+  <section class="features" id="features">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">核心特性</span>
+        <h2>每一个细节，都值得认真对待</h2>
+        <p>不换皮，把整台启动器重新做了一遍。</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature rv"><h3>液态玻璃界面</h3><p>半透明毛玻璃层层叠叠，开关与卡片拥有真实光泽与景深。</p></div>
+        <div class="feature rv"><h3>八套配色方案</h3><p>一次点击全局即时生效，找到最适合你的那一套。</p></div>
+        <div class="feature rv"><h3>版本与整合包</h3><p>原版与多种模组加载器全支持，整合包一键安装。</p></div>
+        <div class="feature rv"><h3>资源社区</h3><p>Mod、整合包、数据包、资源包、光影包一处检索。</p></div>
+        <div class="feature rv"><h3>正版 / 离线双模式</h3><p>多账号快速切换，头像、皮肤与档案各自独立。</p></div>
+        <div class="feature rv"><h3>尺寸由你决定</h3><p>背景透明、不透明度、浓度逐项可调。</p></div>
+      </div>
+    </div>
+  </section>
+  <!-- 展示 -->
+  <section class="showcase" id="showcase">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">界面一览</span>
+        <h2>一屏之内，万事俱备</h2>
+      </div>
+      <div class="seg-center rv">
+        <div class="seg" id="seg" role="tablist" aria-label="界面预览切换">
+          <span class="seg-ind" id="segInd" aria-hidden="true"></span>
+          <button class="seg-btn on" role="tab" aria-selected="true" data-tab="0">启动</button>
+          <button class="seg-btn" role="tab" aria-selected="false" data-tab="1">下载</button>
+          <button class="seg-btn" role="tab" aria-selected="false" data-tab="2">个性化</button>
+        </div>
+      </div>
+      <div class="stage rv" id="stage">
+        <div class="slide on" data-slide="0"><img src="assets/screen-launch.png" alt="启动页" width="1587" height="896"></div>
+        <div class="slide" data-slide="1"><img src="assets/screen-download.png" alt="下载页" width="1447" height="859"></div>
+        <div class="slide" data-slide="2"><img src="assets/screen-theme.png" alt="个性化设置页" width="1390" height="842"></div>
+      </div>
+      <div class="caption" id="caption"><span>正版与离线账号一键切换，版本选择与启动状态一屏掌握。</span></div>
+    </div>
+  </section>
+  <!-- 配色 -->
+  <section class="theme" id="theme">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">配色实验室</span>
+        <h2>八套配色，随心而变</h2>
+        <p>点一下试试，整页强调色会像液体一样流动过去。</p>
+      </div>
+      <div class="swatches rv" id="swatches">
+        <button class="swatch on" data-name="冰川蓝" data-c1="#4FC3F7" data-c2="#0A84FF" style="--c1:#4FC3F7;--c2:#0A84FF"><span class="swatch-dot"></span><span class="swatch-name">冰川蓝</span></button>
+        <button class="swatch" data-name="紫罗兰" data-c1="#BF5AF2" data-c2="#7D5FFF" style="--c1:#BF5AF2;--c2:#7D5FFF"><span class="swatch-dot"></span><span class="swatch-name">紫罗兰</span></button>
+        <button class="swatch" data-name="翡翠森林" data-c1="#30D158" data-c2="#0FB9A5" style="--c1:#30D158;--c2:#0FB9A5"><span class="swatch-dot"></span><span class="swatch-name">翡翠森林</span></button>
+        <button class="swatch" data-name="落日暖橙" data-c1="#FF9F0A" data-c2="#FF6B35" style="--c1:#FF9F0A;--c2:#FF6B35"><span class="swatch-dot"></span><span class="swatch-name">落日暖橙</span></button>
+        <button class="swatch" data-name="玫瑰晨曦" data-c1="#FF375F" data-c2="#FF8FB1" style="--c1:#FF375F;--c2:#FF8FB1"><span class="swatch-dot"></span><span class="swatch-name">玫瑰晨曦</span></button>
+        <button class="swatch" data-name="深海午夜" data-c1="#3B82F6" data-c2="#06B6D4" style="--c1:#3B82F6;--c2:#06B6D4"><span class="swatch-dot"></span><span class="swatch-name">深海午夜</span></button>
+        <button class="swatch" data-name="薄荷汽水" data-c1="#2DD4BF" data-c2="#A3E635" style="--c1:#2DD4BF;--c2:#A3E635"><span class="swatch-dot"></span><span class="swatch-name">薄荷汽水</span></button>
+        <button class="swatch" data-name="钛金灰" data-c1="#C7C7CC" data-c2="#8E8E93" style="--c1:#C7C7CC;--c2:#8E8E93"><span class="swatch-dot"></span><span class="swatch-name">钛金灰</span></button>
+      </div>
+    </div>
+  </section>
+  <!-- 问答 -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">常见问题</span>
+        <h2>关于 DOKI III，你可能想知道</h2>
+        <p>下载、运行与版本相关的常见疑问，都在这里。</p>
+      </div>
+      <div class="faq-list rv">
+        <details class="faq-item">
+          <summary class="faq-q">DOKI III 是什么？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">DOKI III（Dynamic Ore Kit Init 3）是一款面向 Windows 的 Minecraft 我的世界启动器，界面采用 iOS 26 风格的液态玻璃设计，支持原版游戏、模组与整合包下载，以及正版与离线账号切换。</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">DOKI III 支持哪些系统？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">目前支持 Windows 10 与 Windows 11。下载 ZIP 压缩包后解压到任意目录即可直接运行，无需安装步骤。</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">DOKI III 需要付费吗？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">DOKI III 本身完全免费，可自由下载使用，不包含任何付费解锁项。</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">为什么下载功能无法使用？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">DOKI III 暂不提供中国大陆地区的下载功能。在中国大陆以外地区，可在设置中完整阅读并同意相关协议后，手动开启强制下载功能。</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">DOKI III 可以更换主题配色吗？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">可以。设置中的 UI 个性化提供冰川蓝、紫罗兰、翡翠森林、落日暖橙、玫瑰晨曦、深海午夜、薄荷汽水、钛金灰八套配色，并支持调节背景透明度与浓度。</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">当前版本是否稳定？
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq-a">当前发布的是开发预览版本，功能仍在完善中，仅供测试体验，不建议用于正式的游戏存档环境。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">关于</span>
+        <h2>关于 DOKI III 启动器</h2>
+      </div>
+      <div class="about-box rv">
+        <p><strong>DOKI III</strong>（全称 Dynamic Ore Kit Init 3）是一款面向 Windows 平台的 Minecraft 我的世界启动器，专注于把界面体验做到极致。它采用 iOS 26 风格的液态玻璃视觉语言，窗口、卡片、导航与按钮都以半透明磨砂质感呈现，页面切换、标签滑动与配色切换均配有弹簧曲线动效。</p>
+        <p>在功能层面，DOKI III 覆盖日常游戏所需的完整链路：原版游戏版本下载与安装、模组与整合包管理、资源包与光影包获取、正版账号登录与离线账号切换，以及 Java 环境与游戏参数配置。所有操作都能在三个主标签页内完成，不需要在多个窗口之间来回跳转。</p>
+        <p>个性化是该启动器的核心特色之一。设置中提供背景透明开关、整体不透明度与背景浓度滑条，以及冰川蓝、紫罗兰、翡翠森林、落日暖橙、玫瑰晨曦、深海午夜、薄荷汽水、钛金灰八套配色方案，切换时整页强调色会平滑过渡，而不是生硬地跳变。</p>
+        <p>DOKI III 由 DOKI 团队独立开发与维护，以 ZIP 压缩包形式分发，解压即用，无需安装程序，也不写入系统级服务。当前对外发布的是开发预览版本，功能仍在持续完善中，欢迎在实际体验中反馈使用感受。</p>
+        <p>本页面最后更新于 2026 年 10 月 21 日。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载 -->
+  <section class="download" id="download">
+    <div class="wrap">
+      <div class="download-card rv">
+        <div class="dl-icon"><img src="assets/icon.png" alt="DOKI III 图标"></div>
+        <div class="dl-body">
+          <h2>准备好开始了吗？</h2>
+          <p>下载完整开发预览包，解压到任意位置即可使用，无需额外安装步骤。本版本为半成品，仅供测试。</p>
+        </div>
+        <div class="dl-action">
+          <a class="btn btn-primary" href="http://doki.totalh.net/DOKI3.zip" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></svg>
+            下载 DOKI III
+          </a>
+          <small>ZIP 压缩包 · 开发预览半成品</small>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand"><img src="assets/icon.png" alt="">DOKI III</div>
+    <p>Dynamic Ore Kit Init 3 · 为热爱 Minecraft 的你而做</p>
+    <p class="footer-meta">作者：DOKI 团队　·　最后更新：2026 年 10 月 21 日</p>
+    <div class="copy">© 2026 DOKI III｜开发预览版本</div>
+  </div>
+</footer>
+<script>
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  /* 顶栏：常驻，仅切玻璃质感 */
+  var nav = document.getElementById('nav');
+  var navLinks = document.querySelectorAll('[data-nav]');
+  var navInd = document.getElementById('navInd');
+  var sections = [];
+  navLinks.forEach(function (a) { sections.push(document.querySelector(a.getAttribute('href'))); });
+
+  /* 滚动入场 */
+  var rvs = document.querySelectorAll('.rv');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  rvs.forEach(function (el) { io.observe(el); });
+
+  /* 导航滑块指示器 */
+  function moveNavInd() {
+    var on = document.querySelector('.nav-links a.active');
+    if (!on) { navInd.style.opacity = '0'; return; }
+    navInd.style.opacity = '1';
+    navInd.style.width = on.offsetWidth + 'px';
+    navInd.style.transform = 'translateX(' + on.offsetLeft + 'px)';
+  }
+
+  /* 顶栏高亮 + 玻璃 */
+  var lastNavIndex = -2;
+  function onScroll() {
+    var y = window.scrollY;
+    nav.classList.toggle('is-scrolled', y > 24);
+    var mid = y + window.innerHeight * 0.35;
+    var cur = -1;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) cur = i; });
+    if (cur !== lastNavIndex) {
+      lastNavIndex = cur;
+      navLinks.forEach(function (a, i) { a.classList.toggle('active', i === cur); });
+      moveNavInd();
+    }
+  }
+  window.addEventListener('scroll', function () {
+    requestAnimationFrame(onScroll);
+  }, { passive: true });
+  window.addEventListener('resize', function () { requestAnimationFrame(moveNavInd); });
+  onScroll();
+  window.addEventListener('load', function () { requestAnimationFrame(moveNavInd); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(moveNavInd); }
+
+  /* ============ 锚点丝滑滚动：自定义 iOS 缓动，滚轮/触摸可打断 ============ */
+  var scrollRaf = null;
+  function smoothScrollTo(targetY) {
+    if (scrollRaf) { cancelAnimationFrame(scrollRaf); scrollRaf = null; }
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    targetY = Math.max(0, Math.min(targetY, maxY));
+    var startY = window.scrollY;
+    var diff = targetY - startY;
+    if (Math.abs(diff) < 2) return;
+    /* 距离越远时长略长，但封顶，保持干脆 */
+    var duration = Math.min(1100, 420 + Math.abs(diff) * 0.28);
+    var t0 = performance.now();
+    root.style.scrollBehavior = 'auto'; /* 交给 JS 缓动，避免浏览器双重平滑打架 */
+    /* iOS 风格缓动：加速快、收尾绵长 */
+    function easeInOutQuint(t) {
+      return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+    }
+    function step(now) {
+      var p = Math.min(1, (now - t0) / duration);
+      window.scrollTo(0, startY + diff * easeInOutQuint(p));
+      if (p < 1) {
+        scrollRaf = requestAnimationFrame(step);
+      } else {
+        scrollRaf = null;
+        root.style.scrollBehavior = '';
+      }
+    }
+    scrollRaf = requestAnimationFrame(step);
+  }
+  /* 用户主动滚轮/触摸/键盘 → 立即交还控制权 */
+  ['wheel', 'touchstart', 'keydown'].forEach(function (evt) {
+    window.addEventListener(evt, function () {
+      if (scrollRaf) { cancelAnimationFrame(scrollRaf); scrollRaf = null; root.style.scrollBehavior = ''; }
+    }, { passive: true });
+  });
+  /* 拦截页内锚点点击 */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var target = id === '' || id === 'top' ? document.body : document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var y = target === document.body ? 0
+        : target.getBoundingClientRect().top + window.scrollY - 84; /* 预留顶栏高度 */
+      smoothScrollTo(y);
+      history.replaceState(null, '', a.getAttribute('href'));
+    });
+  });
+
+  /* ============ 截图切换：方向感知弹簧滑动 ============ */
+  var seg = document.getElementById('seg');
+  var segInd = document.getElementById('segInd');
+  var segBtns = seg.querySelectorAll('.seg-btn');
+  var stage = document.getElementById('stage');
+  var slides = stage.querySelectorAll('.slide');
+  var caption = document.getElementById('caption');
+  var captions = [
+    '正版与离线账号一键切换，版本选择与启动状态一屏掌握。',
+    '正式版、预览版与远古版分层呈现，资源社区并列可查。',
+    '背景透明、不透明度、浓度实时调节，八套配色随心更换。'
+  ];
+  var curSlide = 0;
+  var swapTimer = null;
+  function moveInd() {
+    var on = seg.querySelector('.seg-btn.on');
+    if (!on) return;
+    segInd.style.width = on.offsetWidth + 'px';
+    segInd.style.transform = 'translateX(' + on.offsetLeft + 'px)';
+  }
+  function select(i) {
+    if (i === curSlide) return;
+    var dir = i > curSlide ? 1 : -1; /* 1=向右切  -1=向左切 */
+    var outSlide = slides[curSlide];
+    var inSlide = slides[i];
+    curSlide = i;
+
+    segBtns.forEach(function (b, k) {
+      b.classList.toggle('on', k === i);
+      b.setAttribute('aria-selected', k === i ? 'true' : 'false');
+    });
+    moveInd();
+
+    /* 旧图向反方向滑出 */
+    outSlide.classList.remove('on', 'from-left', 'from-right');
+    outSlide.classList.add(dir > 0 ? 'exit-left' : 'exit-right');
+    /* 新图从行进方向的对侧滑入：向右切 → 新图从右边来 */
+    inSlide.classList.remove('on', 'exit-left', 'exit-right', 'from-left', 'from-right');
+    inSlide.classList.add(dir > 0 ? 'from-right' : 'from-left');
+    void inSlide.offsetWidth; /* 强制回流，确保起点生效再触发过渡 */
+    inSlide.classList.add('on');
+    /* 清理退出态，方便下次复用 */
+    setTimeout(function () {
+      outSlide.classList.remove('exit-left', 'exit-right');
+    }, 750);
+
+    /* 说明文字同步丝滑换行 */
+    clearTimeout(swapTimer);
+    caption.classList.add('swap');
+    swapTimer = setTimeout(function () {
+      caption.firstElementChild.textContent = captions[i];
+      caption.classList.remove('swap');
+    }, 180);
+  }
+  segBtns.forEach(function (b, i) {
+    b.addEventListener('click', function () { select(i); holdAuto(); });
+  });
+  /* 支持键盘左右方向键切换 */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var r = stage.getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.8 || r.bottom < 0) return;
+    var next = curSlide + (e.key === 'ArrowRight' ? 1 : -1);
+    next = Math.max(0, Math.min(slides.length - 1, next));
+    select(next);
+    holdAuto();
+  });
+  window.addEventListener('load', function () { requestAnimationFrame(moveInd); });
+  window.addEventListener('resize', function () { requestAnimationFrame(moveInd); });
+
+  /* ============ 自动轮播：悬停/切后台/滚出视口自动暂停 ============ */
+  var HOLD_RESUME = 8000;
+  var userHold = false, hoverHold = false, inView = false, holdTimer = null;
+
+  function isAutoAllowed() {
+    return !reduceMotion && !document.hidden && inView && !userHold && !hoverHold;
+  }
+  setInterval(function () {
+    if (isAutoAllowed()) select((curSlide + 1) % slides.length);
+  }, 4500);
+
+  /* 鼠标停在切换器或大图上 → 暂停轮播 */
+  [seg, stage].forEach(function (el) {
+    el.addEventListener('mouseenter', function () { hoverHold = true; });
+    el.addEventListener('mouseleave', function () { hoverHold = false; });
+  });
+  /* 手动切换后暂停 8 秒再恢复轮播 */
+  function holdAuto() {
+    userHold = true;
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(function () { userHold = false; }, HOLD_RESUME);
+  }
+  /* 滚出视口暂停 */
+  new IntersectionObserver(function (entries) {
+    inView = entries[0].isIntersecting;
+  }, { threshold: 0.25 }).observe(stage);
+
+  /* ============ 配色切换：@property 驱动的流动渐变 ============ */
+  var swatches = document.querySelectorAll('.swatch');
+  swatches.forEach(function (sw) {
+    sw.addEventListener('click', function () {
+      root.style.setProperty('--accent', sw.getAttribute('data-c1'));
+      root.style.setProperty('--accent-2', sw.getAttribute('data-c2'));
+      swatches.forEach(function (s) { s.classList.toggle('on', s === sw); });
+    });
+  });
+
+  /* ============ 自定义光标 + 视差光晕 + 磁吸（统一 rAF 循环） ============ */
+  var dot = document.getElementById('cursorDot');
+  var ring = document.getElementById('cursorRing');
+  var glowWrap = document.querySelector('.glow-wrap');
+  if (finePointer && !reduceMotion) {
+    root.classList.add('has-cursor');
+    var mx = innerWidth / 2, my = innerHeight / 2;   /* 鼠标真实位置 */
+    var rx = mx, ry = my;                            /* 外环跟随位置（弹簧） */
+    var px = 0, py = 0;                              /* 光晕视差当前值 */
+    var started = false;
+
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (!started) { started = true; rx = mx; ry = my; root.classList.add('cursor-on'); }
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { root.classList.remove('cursor-on'); });
+    document.addEventListener('mouseenter', function () { if (started) root.classList.add('cursor-on'); });
+    document.addEventListener('mousedown', function () { root.classList.add('cursor-press'); });
+    document.addEventListener('mouseup', function () { root.classList.remove('cursor-press'); });
+
+    /* 悬停可交互元素 → 外环吸附放大（事件委托） */
+    var HOVER_SEL = 'a, button, .seg-btn, .swatch, .feature';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest(HOVER_SEL)) root.classList.add('cursor-hover');
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest(HOVER_SEL)) root.classList.remove('cursor-hover');
+    });
+
+    /* 磁吸按钮：主要 CTA 轻微被光标吸引 */
+    document.querySelectorAll('[data-magnetic]').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = 'translate(' + dx * 0.18 + 'px,' + dy * 0.28 + 'px) scale(1.04)';
+      });
+      el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+    });
+
+    /* Hero 主视觉 3D 微倾斜 */
+    var heroShot = document.getElementById('heroShot');
+    if (heroShot) {
+      var wrap = heroShot.parentElement;
+      wrap.addEventListener('mousemove', function (e) {
+        var r = heroShot.getBoundingClientRect();
+        var nx = (e.clientX - r.left) / r.width - 0.5;
+        var ny = (e.clientY - r.top) / r.height - 0.5;
+        heroShot.style.transform =
+          'translateY(-6px) rotateX(' + (-ny * 4).toFixed(2) + 'deg) rotateY(' + (nx * 5).toFixed(2) + 'deg)';
+      });
+      wrap.addEventListener('mouseleave', function () { heroShot.style.transform = ''; });
+    }
+
+    (function loop() {
+      /* 外环弹簧跟随（lerp） */
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+      /* 光晕视差：光标反向轻移，营造景深 */
+      px += ((mx / innerWidth - 0.5) * -34 - px) * 0.05;
+      py += ((my / innerHeight - 0.5) * -24 - py) * 0.05;
+      glowWrap.style.transform = 'translate3d(' + px.toFixed(2) + 'px,' + py.toFixed(2) + 'px,0)';
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
